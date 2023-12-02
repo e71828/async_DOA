@@ -55,9 +55,9 @@ classdef helperAsyncAngleOnlyTrackingDisplay < matlab.System
             ax2.DataAspectRatio = [1 1 1];
             obj.PHDPlotter = imagesc(ax2,zeros(500,500),'XData',xData,'YData',yData,'AlphaData',1);
             uistack(obj.PHDPlotter,'bottom')
-            l.Location = 'northoutside';
-            l.Orientation = 'horizontal';
-            l.Position = [0.0469    0.9429    0.4125    0.0500];
+            l.Location = 'northeast';
+            l.Orientation = 'vertical';
+            % l.Position = [0.0469    0.9429    0.4125    0.0500];
             ax2.YDir = 'normal';
             ax2.XTickLabel = ax.XTickLabel;
             ax2.YTickLabel = ax.YTickLabel;
