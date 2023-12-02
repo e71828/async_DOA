@@ -31,15 +31,15 @@ jammer = radarEmitter(1,'UpdateRate',3,'ScanMode','No scanning','FieldOfView',[3
 
 numTargets = 5;
 % Targets in a straight line
-yTgt = 5e2*ones(1,numTargets);
-xTgt = linspace(-800,800,numTargets);
+yTgt = 5e2*ones(1,numTargets)*5;
+xTgt = linspace(-800,800,numTargets)*5;
 
 % Pick a velocity for each target in the plane.
 velocity = [-5 5;
             -3 3;
             0 5;
             3 3;
-            5 5]*2;
+            5 5]*2*5;
 
 for i = 1:numTargets
     traj = kinematicTrajectory('Position',...
@@ -50,11 +50,11 @@ for i = 1:numTargets
 end
 
 % Add sensing platforms
-r = 1e3;
+r = 8e3;
 numSensors = 3;
 theta = [-5*pi/28 0 5*pi/28] + pi/2;
 xSen = r*cos(theta);
-ySen = -r*sin(theta);
+ySen = r*sin(theta)-8e3;
 locationIDs = [3 2 1];
 
 for i = 1:numSensors

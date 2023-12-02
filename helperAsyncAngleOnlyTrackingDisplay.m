@@ -32,8 +32,9 @@ classdef helperAsyncAngleOnlyTrackingDisplay < matlab.System
             end
 
             ax = axes(obj.Parent,'OuterPosition',[0 0 0.5 1]);
+            axis(ax,"square")
             ax.Color = 0.9*[1 1 1];
-            tp = theaterPlot('Parent',ax,'XLim',[-2e3 2e3],'YLim',[-2e3 2e3],...
+            tp = theaterPlot('Parent',ax,'XLim',[-8e3 8e3],'YLim',[-3e3 13e3],...
                 'AxesUnits',["km","km","km"]);
             receiverPlotter = platformPlotter(tp,'DisplayName','Receivers','Marker','diamond','MarkerFaceColor',obj.ColorOrder(3,:));
             emitterPlotter = platformPlotter(tp,'DisplayName','Emitters','Marker','^','MarkerFaceColor',obj.ColorOrder(2,:));
@@ -48,8 +49,8 @@ classdef helperAsyncAngleOnlyTrackingDisplay < matlab.System
             obj.ReceiverPlotter = receiverPlotter;
             obj.EmitterPlotter = emitterPlotter;
             hold on;
-            xData = linspace(-2e3,2e3,500);
-            yData = linspace(-2e3,2e3,500);
+            xData = linspace(-8e3,8e3,500);
+            yData = linspace(-3e3,13e3,500);
             ax2 = axes(obj.Parent,'OuterPosition',[0.5 0 0.5 1]);
             ax2.DataAspectRatio = [1 1 1];
             obj.PHDPlotter = imagesc(ax2,zeros(500,500),'XData',xData,'YData',yData,'AlphaData',1);
@@ -62,6 +63,7 @@ classdef helperAsyncAngleOnlyTrackingDisplay < matlab.System
             ax2.YTickLabel = ax.YTickLabel;
             ax2.XLabel = copy(ax.XLabel);
             ax2.YLabel = copy(ax.YLabel);
+            axis(ax2,"square")
             title(ax2,'Probability Hypothesis Density');
             % Plot trajectories
             scenario = clone(scenario);
@@ -111,8 +113,8 @@ classdef helperAsyncAngleOnlyTrackingDisplay < matlab.System
             components = extractState(phd,0);
             if ~isempty(components)
                 [pos, cov] = getTrackPositions(components,'constvel');
-                xData = linspace(-2e3,2e3,500);
-                yData = linspace(-2e3,2e3,500);
+                xData = linspace(-8e3,8e3,500);
+                yData = linspace(-3e3,13e3,500);
                 phdImage = getPositionPHD(pos', cov, phd.Weights, xData, yData);
             else
                 phdImage = zeros(500,500);
